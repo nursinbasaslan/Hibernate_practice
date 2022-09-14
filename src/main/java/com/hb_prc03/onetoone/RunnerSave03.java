@@ -19,12 +19,12 @@ public class RunnerSave03 {
 		dr1.setGrade(12);
 		dr1.setBranch("genel cerrah");
 		dr1.setEmail("email");
-		dr1.setStethoscope(ste1);
+		dr1.setStethoscope(ste1);//bu satir inner join olusturur
 
 		ste1.setId(101);
 		ste1.setName(dr1.getName() + " 's stethoscope");
-		ste1.setDoctor(dr1);
-
+		ste1.setDoctor(dr1); //bu satir inner join olusturur
+		
 		Doctor03 dr2 = new Doctor03();
 		Stethoscope ste2 = new Stethoscope();
 
@@ -52,9 +52,6 @@ public class RunnerSave03 {
 		ste3.setName("nobody's stet");
 		
 		
-		
-		
-
 		Configuration con = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Doctor03.class)
 				.addAnnotatedClass(Stethoscope.class);
 
@@ -65,8 +62,12 @@ public class RunnerSave03 {
 		Transaction tx = session.beginTransaction();
 
 		session.save(dr1);
+		session.save(dr2);
+		session.save(dr3);
 		session.save(ste1);
-
+		session.save(ste2);
+		session.save(ste3);
+		
 		tx.commit();
 		session.close();
 		sf.close();
